@@ -5,20 +5,24 @@ import { Outlet } from "react-router-dom";
 export const VocabularyContext = createContext([]);
 
 const Vocabulary = () => {
-    const path = "/data/Vocabulary";
+    const path = "/data/Vocabulary.json";
     const [textArray, setTextArray] = useState([]);
+    const [message, setMessage] = useState({});
     useEffect(()=>{
         fetch(path)
-        .then((response) => response.text())
-        .then((text) => {
-            setTextArray(text.split("\n"))
+        .then((response) => {
+            return response.json()
+        })
+        .then((json) => {
+            console.log(json)
+            setTextArray(json.vocabularies)
         })
         .catch((error) => console.error("Error fetching file:", error));
     }, [])
 
     return (
         <VocabularyContext.Provider value={textArray}>
-            <Outlet/>
+            <Outlet context={{message, setMessage}}/>
         </VocabularyContext.Provider>
     )
 };
