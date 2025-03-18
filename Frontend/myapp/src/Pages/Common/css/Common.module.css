@@ -1,0 +1,53 @@
+:root {
+    --color-font: white;
+  }
+
+.footer1 {
+    background-color: #4e0a6c;
+    color: var(--color-font);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    padding: 15px;
+}
+
+.header1 {
+    background-color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px 5px gray;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    width: 100vw;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    position: fixed;
+    z-index: 100;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.banner1 {
+    background: linear-gradient(to right, rgb(255, 50, 50), rgb(50, 50, 255));
+    font-size: 30px;
+    text-shadow: 2px 2px 5px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+button {
+    transition:  background 0.3s ease-in-out, transform 0.3s;
+    border: 5px solid red;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+button:hover {
+background: rgb(136, 54, 54);
+transform: scale(1.1);
+}
+

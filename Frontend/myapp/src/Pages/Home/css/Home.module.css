@@ -1,0 +1,38 @@
+:root {
+    --color-font: white;
+}
+
+.link {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.homeContentContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(242, 231, 255);
+}
+
+.homeContent {
+    width: 100%;
+    height: 100vh;
+    flex: 1; /* 让 content 充满 container 剩余空间 */
+    overflow-y: auto; /* 让 content 可滚动 */
+}
+
+.homeBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1; /* 让 container 填充 body 里的剩余空间 */
+    min-height: 100vh; /* 让 container 至少占据整个视口高度 */
+}
+
+.homeMain {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    overflow-x: hidden;
+}
