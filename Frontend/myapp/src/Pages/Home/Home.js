@@ -1,36 +1,50 @@
-import {React, useRef, useLayoutEffect} from "react";
+import {React, useLayoutEffect, useRef, createContext, useState, useMemo} from "react";
 import Header from "../Common/Header";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import style from './css/Home.module.css'
-
-
-
+export const HomeContentContainer = createContext({
+    headerHeight: 100,
+    screenHeight: 100
+});
 const Home = () => {
-    let navigate = useNavigate()
-    const headerRef = useRef(null)
-    const bodyRef = useRef(null)
+    const headerRef = useRef(null);
+    const [context, setContext] = useState({
+        headerHeight: 0,
+        screenHeight: 0
+    });
+    const contextValue = useMemo(() => context, [context]);
 
-    useLayoutEffect(()=>{
-        //divRef.current.offsetHeight
-        if(headerRef.current && bodyRef.current)
-        {
-            console.log(headerRef.current.offsetHeight)
-            bodyRef.current.style.marginTop = `${headerRef.current.offsetHeight}px`
-        }
-    }, [])
+    useLayoutEffect(() => {
+        const updateDimensions = () => {
+            if (headerRef.current) {
+                //console.log(`header height ${headerRef.current.offsetHeight}, screen height ${window.innerHeight}`)
+                setContext(prevContext => ({
+                    ...prevContext,
+                    headerHeight: headerRef.current.offsetHeight,
+                    screenHeight: window.innerHeight
+                }));
+            }
+        };
+    
+        updateDimensions();
+        window.addEventListener("resize", updateDimensions);
+    
+        return () => window.removeEventListener("resize", updateDimensions);
+    }, []);
 
     return (
         <div className={style.homeMain}>
             <Header ref={headerRef}>
-                <Link to="/News" className={style.link}>News</Link>
-                <Link to="/Notes" className={style.link}>Notes</Link>
-                <Link to="/EnglishStudy">English Study</Link>
-                <button onClick={()=>{
-                    navigate('./News')
-                }}>News</button>
+                <nav>
+                <NavLink to="/" end className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>Main Page</NavLink>
+                    <NavLink to="/News" className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>News</NavLink>
+                    <NavLink to="/Notes" className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>Notes</NavLink>
+                    <NavLink to="/EnglishStudy" className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>English Study</NavLink>
+                </nav>
             </Header>
-            <div ref={bodyRef}/>
-            <Outlet/>
+            <HomeContentContainer.Provider value={contextValue}>
+                <Outlet/>
+            </HomeContentContainer.Provider>
         </div>
     )
 };

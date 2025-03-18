@@ -4,7 +4,6 @@ import style from './css/Common.module.css'
 const Header = forwardRef((props, ref) => {
     return (
         <header ref={ref} className={style.header1}>
-            This is Header!
             {props.children}
         </header>
     );
