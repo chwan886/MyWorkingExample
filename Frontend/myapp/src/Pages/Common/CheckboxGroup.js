@@ -34,7 +34,7 @@ const CheckboxGroup = ({type, options, defaultSelections, selectedOptions, onChe
         <div className={style.checkbox_container}>
             {
                 options.map((option, index)=>{
-                    return (<label className={checkedOptions.includes(option)?style.checkbox_active:style.checkbox} checked={checkedOptions.includes(option)}>
+                    return (<label className={checkedOptions.includes(option)?style.checkbox_active:style.checkbox}>
                                 <input 
                                 id={`checkbox-${index}`} 
                                 type="checkbox" 

@@ -24,6 +24,7 @@ const getRandomElements = (arr, x) => {
 };
 
 let uniqueWords = [];
+let wordIndex = -1;
 
 const VocabularyCheck = ()=>{
     const { message, setMessage } = useOutletContext();
@@ -34,24 +35,30 @@ const VocabularyCheck = ()=>{
 
         // 生成不同的随机单词
     const getRandomWord = useCallback(()=>{
-        if (uniqueWords.length === 0) 
+        if (wordIndex === uniqueWords.length) 
         {
             setRemainWords(0);
             console.log("uniqueWords lenth is 0")
             return;
         }
-        const newWord = uniqueWords[uniqueWords.length-1];
-        console.log(`${newWord}`)
-        setCurrentWord(newWord);
-
-        uniqueWords.splice(uniqueWords.length-1, 1);
-        setRemainWords(uniqueWords.length+1);
-        setSelectedOption([]);
+        if(wordIndex>=0 && wordIndex < uniqueWords.length)
+        {
+            const newWord = uniqueWords[wordIndex];
+            wordIndex+=1;
+            console.log(`${newWord}`)
+            setCurrentWord(newWord);
+    
+            setRemainWords(uniqueWords.length - wordIndex + 1);
+            setSelectedOption([]);
+        }else{
+            console.log("wordIndex is -1, check uniqueWords");
+        }
     }, [])
 
     useEffect(() => {
         //console.log(`the test will be ${message.checkedOptions[0]}`)
         uniqueWords = getRandomElements(vocabularies, TEST_OPTIONS_VALUES[message.checkedOption]);
+        wordIndex = uniqueWords.length > 0 ? 0: -1;
         console.log(`uniqueWords length is ${uniqueWords.length}`)
         if (uniqueWords.length > 0) {
             console.log("useEffect getRandomWord()");
@@ -75,15 +82,16 @@ const VocabularyCheck = ()=>{
                     message.testResults.set(currentWord, false);
                 }
                 setSelectedOption(checkedOptions);
+                getRandomWord();
             }}/>
             {
                 remainWords === 0?
                 <NavLink onClick={()=>setMessage(message)} to={PATH.VOCABULARY_RESULT}>查看测试结果!</NavLink>:
                 <div>
                     还剩{remainWords}/{TEST_OPTIONS_VALUES[message.checkedOption]}个单词
-                    <button onClick={()=>{
+                    {/* <button onClick={()=>{
                         getRandomWord();
-                    }}>下一题</button>
+                    }}>下一题</button> */}
                 </div>
             }
 
