@@ -1,7 +1,8 @@
 import {React, useLayoutEffect, useRef, createContext, useState, useMemo} from "react";
 import Header from "../Common/Header";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import style from './css/Home.module.css'
+import { PATH } from "../../IndexRouter";
 export const HomeContentContainer = createContext({
     headerHeight: 100,
     screenHeight: 100
@@ -13,6 +14,15 @@ const Home = () => {
         screenHeight: 0
     });
     const contextValue = useMemo(() => context, [context]);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleNaviClick = (path)=>{
+        if(!location.pathname.startsWith(path))
+        {
+            navigate(path);
+        }
+    }
 
     useLayoutEffect(() => {
         const updateDimensions = () => {
@@ -36,10 +46,22 @@ const Home = () => {
         <div className={style.homeMain}>
             <Header ref={headerRef}>
                 <nav>
-                <NavLink to="/" end className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>Main Page</NavLink>
-                    <NavLink to="/News" className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>News</NavLink>
-                    <NavLink to="/Notes" className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>Notes</NavLink>
-                    <NavLink to="/EnglishStudy" className={({ isActive }) => (isActive ? style.activeLink : style.navLink)}>English Study</NavLink>
+                    <NavLink to={PATH.HOME} end className={({ isActive }) => (isActive ? style.activeLink : style.navLink)} onClick={(e)=>{
+                        e.preventDefault();
+                        handleNaviClick(PATH.HOME);
+                    }}>Main Page</NavLink>
+                    <NavLink to={PATH.NEWS} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)} onClick={(e)=>{
+                        e.preventDefault();
+                        handleNaviClick(PATH.NEWS);
+                    }}>News</NavLink>
+                    <NavLink to={PATH.NOTES} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)} onClick={(e)=>{
+                        e.preventDefault();
+                        handleNaviClick(PATH.NOTES);
+                    }}>Notes</NavLink>
+                    <NavLink to={PATH.ENGLISH_STUDY} className={({ isActive }) => (isActive ? style.activeLink : style.navLink)} onClick={(e)=>{
+                        e.preventDefault();
+                        handleNaviClick(PATH.ENGLISH_STUDY);
+                    }}>English Study</NavLink>
                 </nav>
             </Header>
             <HomeContentContainer.Provider value={contextValue}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Notes from "./Pages/Notes";
 import News from "./Pages/News/News";
@@ -12,12 +12,15 @@ import VocabularyMain from "./Pages/EnglishStudy/VocabularyMain";
 import VocabularyResult from "./Pages/EnglishStudy/VocabularyResult";
 
 export const PATH = {
-  HOME: "/",
+  ROOT: "/",
+  HOME: "/Home",
   NEWS: "/News",
+  NOTES: "/Notes",
   ENGLISH_STUDY: "/EnglishStudy",
-  VOCABULARY_MAIN: "/EnglishStudy/Vocabulary_Check/main",
-  VOCABULARY_CHECK: "/EnglishStudy/Vocabulary_Check/main/details",
-  VOCABULARY_RESULT: "/EnglishStudy/Vocabulary_Check/main/results"
+  VOCABULARY_MAIN: "/EnglishStudy/Vocabulary_Check",
+  VOCABULARY_CHECK: "/EnglishStudy/Vocabulary_Check/details",
+  VOCABULARY_RESULT: "/EnglishStudy/Vocabulary_Check/results",
+  GRAMMARS_MAIN: "/EnglishStudy/Grammars"
 }
 
 const IndexRouter = () => {
@@ -25,17 +28,17 @@ const IndexRouter = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} >
-            <Route index element={<HomeBody/>} />
+            <Route index path="/Home" element={<HomeBody/>} />
             <Route path="/Notes" element={<Notes />} />
             <Route path="/News" element={<News />} />
             <Route path="/EnglishStudy" element={<EnglishStudyMain />}>
+              <Route index element={<Navigate to={PATH.VOCABULARY_MAIN} replace />} />
               <Route path="Vocabulary_Check" element={<VocabularyContainer/>}>
-                <Route path="main" element={<VocabularyMain/>}>
-                </Route>
-                <Route path="main/details" element={<VocabularyCheck/>}/>
-                <Route path="main/results" element={<VocabularyResult/>}/>
+                <Route index element={<VocabularyMain/>}/>
+                <Route path="details" element={<VocabularyCheck/>}/>
+                <Route path="results" element={<VocabularyResult/>}/>
               </Route>
-              <Route path="Grammer" element={<Grammars/>}>
+              <Route path="Grammars" element={<Grammars/>}>
               </Route>
             </Route>
         </Route>
