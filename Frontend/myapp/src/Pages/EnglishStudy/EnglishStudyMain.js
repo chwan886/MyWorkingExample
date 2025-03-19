@@ -20,6 +20,7 @@ const EnglishStudyMain = () => {
                 <NavLink to="/EnglishStudy/Vocabulary_Check/main" className={({isActive}) => isActive?style.navi_active:style.navi}>Vocabulary check</NavLink>
                 <NavLink to="/EnglishStudy/Grammer" className={({isActive}) => isActive?style.navi_active:style.navi}>Grammars</NavLink>
             </div>
+            <div className={style.vertical_line}/>
             <div className={style.body}>
                 <Outlet/>
             </div>

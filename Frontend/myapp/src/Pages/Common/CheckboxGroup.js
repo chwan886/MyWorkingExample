@@ -1,12 +1,17 @@
-import {React, useState} from "react";
+import {React, useState, useEffect} from "react";
+import style from "./css/Common.module.css"
 
 export const CHECK_TYPE = {
     SINGLE: 1,
     MULTIPLE: 2
 };
-
-const CheckboxGroup = ({type, options, onCheckChange}) => {
+//type, options, defaultSelections, selectedOptions, onCheckChange
+const CheckboxGroup = ({type, options, defaultSelections, selectedOptions, onCheckChange}) => {
     const [checkedOptions, setChechedOptions] = useState([])
+
+    useEffect(() => {
+        setChechedOptions(defaultSelections || selectedOptions || []);
+    }, [selectedOptions, defaultSelections]);
 
     const handleChange = (event)=>{
         const { value, checked } = event.target;
@@ -14,23 +19,24 @@ const CheckboxGroup = ({type, options, onCheckChange}) => {
         if(type === CHECK_TYPE.MULTIPLE)
         {
             setChechedOptions((prev)=>{
-                onCheckChange([...prev, value])
-                return checked ? [...prev, value] : prev.filter((item)=>item !== value)
+                const newCheckedOptions = checked ? [...prev, value] : prev.filter((item) => item !== value);
+                onCheckChange(newCheckedOptions);
+                return newCheckedOptions;
             })
         }else{
-            onCheckChange([value])
             setChechedOptions([value])
+            onCheckChange([value])
         }
         console.log(`option ${value} is checked.`)
     }
 
     return (
-        <div>
+        <div className={style.checkbox_container}>
             {
-                options.map((option)=>{
-                    return (<label>
+                options.map((option, index)=>{
+                    return (<label className={checkedOptions.includes(option)?style.checkbox_active:style.checkbox} checked={checkedOptions.includes(option)}>
                                 <input 
-                                key={option}
+                                id={`checkbox-${index}`} 
                                 type="checkbox" 
                                 value={option}
                                 checked={checkedOptions.includes(option)}

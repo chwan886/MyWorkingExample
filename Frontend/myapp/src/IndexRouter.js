@@ -9,6 +9,16 @@ import Grammars from "./Pages/EnglishStudy/Grammer";
 import VocabularyContainer from "./Pages/EnglishStudy/VocabularyContainer";
 import VocabularyCheck from "./Pages/EnglishStudy/VocabularyCheck";
 import VocabularyMain from "./Pages/EnglishStudy/VocabularyMain";
+import VocabularyResult from "./Pages/EnglishStudy/VocabularyResult";
+
+export const PATH = {
+  HOME: "/",
+  NEWS: "/News",
+  ENGLISH_STUDY: "/EnglishStudy",
+  VOCABULARY_MAIN: "/EnglishStudy/Vocabulary_Check/main",
+  VOCABULARY_CHECK: "/EnglishStudy/Vocabulary_Check/main/details",
+  VOCABULARY_RESULT: "/EnglishStudy/Vocabulary_Check/main/results"
+}
 
 const IndexRouter = () => {
   return (
@@ -23,6 +33,7 @@ const IndexRouter = () => {
                 <Route path="main" element={<VocabularyMain/>}>
                 </Route>
                 <Route path="main/details" element={<VocabularyCheck/>}/>
+                <Route path="main/results" element={<VocabularyResult/>}/>
               </Route>
               <Route path="Grammer" element={<Grammars/>}>
               </Route>

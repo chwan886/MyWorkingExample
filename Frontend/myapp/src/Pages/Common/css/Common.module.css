@@ -34,15 +34,77 @@
     padding: 15px;
 }
 
+.checkbox {
+    color: #6f01e8;
+    font-size: 20px;
+}
+
 button {
-    transition:  background 0.3s ease-in-out, transform 0.3s;
-    border: 5px solid red;
-    margin-left: 20px;
-    border-radius: 5px;
+    background-color: white;
+    border: none;
+    font-size: large;
+    font-weight: bold;
 }
 
 button:hover {
-background: rgb(136, 54, 54);
-transform: scale(1.1);
+    background-color: white;
+    border: none;
+    color: #4e0a6c;
+    font-size: large;
+    font-weight: bold;
 }
 
+.checkbox_container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 22px 6px 22px;
+    font-size: 20px;
+    background-color: white; /* 默认颜色 */
+    border: 2px solid #74005c;
+    border-radius: 2px; /* 圆角 */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    user-select: none;
+    color: #74005c;
+}
+
+.checkbox_active {
+    background-color: #74005c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 22px 6px 22px;
+    font-size: 20px;
+    border: 2px solid #74005c;
+    border-radius: 2px; /* 圆角 */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    user-select: none;
+}
+
+.checkbox_active input[type="checkbox"] {
+    display: none;
+}
+
+
+.checkbox:hover {
+    background-color: #74005c;
+    color: white;
+}

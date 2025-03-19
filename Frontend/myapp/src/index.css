@@ -14,8 +14,13 @@ html, body{
   padding: 0;
   width: 100vw;
   overflow-x: hidden;
-  background: linear-gradient(to bottom, #1100ff6c, #4570ff) fixed;
+  background: white;/*linear-gradient(to bottom, #1100ff6c, #4570ff) fixed;*/
   background-size: cover;
+  font-family: "Times New Roman", Times, serif;  /* 适合正式场合 */
+  font-family: "Arial", sans-serif;             /* 现代感强 */
+  font-family: "Courier New", Courier, monospace; /* 代码风格 */
+  font-family: "Georgia", serif;               /* 优雅的衬线字体 */
+  font-family: "Verdana", sans-serif;          /* 适合 UI 设计 */
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
