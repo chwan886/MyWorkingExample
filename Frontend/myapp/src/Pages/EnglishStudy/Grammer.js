@@ -8,7 +8,7 @@ const Grammars = () => {
     const [markdown, setMarkdown] = useState("");
 
     useEffect(() => {
-        fetch(urls.GRAMMARS)  // 👈 这里换成你的 Markdown 地址
+        fetch(urls.ENGLISH_STUDY.GRAMMARS)  // 👈 这里换成你的 Markdown 地址
             .then(response => response.text())
             .then(text => setMarkdown(text))
             .catch(error => console.error("Error fetching Markdown:", error));

@@ -6,7 +6,7 @@ import urls from "../../res/urls";
 export const VocabularyContext = createContext([]);
 
 const Vocabulary = () => {
-    const path = urls.VOCABULARIES;
+    const path = urls.ENGLISH_STUDY.VOCABULARIES;
     const [textArray, setTextArray] = useState([]);
     const [message, setMessage] = useState({});
     useEffect(()=>{

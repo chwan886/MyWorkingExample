@@ -113,3 +113,50 @@ button:hover {
     background-color: #74005c;
     color: white;
 }
+
+.inputContainer {
+    width: 100%;
+    background-color: #6f01e8;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    padding: 20px;
+}
+
+.inputBox {
+    width: 50%; /* 控制输入框宽度 */
+    max-width: 400px; /* 最大宽度 */
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #a570ff;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.inputBox:focus {
+    border-color: #5a0048;
+    box-shadow: 0px 0px 10px rgba(116, 0, 92, 0.5);
+}
+
+.inputButton {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #a570ff;
+    color: white;
+    border-radius: 8px;
+    border: 2px solid #a570ff;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.inputButton:hover {
+    background-color: white;
+    color: #a570ff;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #a570ff;
+    cursor: pointer;
+    margin-left: 20px;
+    box-shadow: 0px 0px 10px rgba(116, 0, 92, 0.5);
+}

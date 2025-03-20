@@ -28,7 +28,7 @@ const VocabularyMain = ()=>{
     useEffect(()=>{
         message.checkedOption = [TEST_OPTIONS[0]]
         setMessage(message);
-    }, [])
+    })
 
     return (
         <div className={style.container_div}>
