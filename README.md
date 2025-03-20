@@ -13,9 +13,7 @@ To run this project locally, follow these steps:
 #### Prerequisites
 Ensure you have the following installed:
 
-```
-    Node.js (which includes npm)​
-```
+Node.js (which includes npm)​
 
 ```
     git clone https://github.com/chwan886/MyWorkingExample.git
