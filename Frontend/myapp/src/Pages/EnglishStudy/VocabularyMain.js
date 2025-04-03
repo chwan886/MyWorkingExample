@@ -1,9 +1,10 @@
-import {React, useEffect} from "react";
+import {React, useEffect, useContext, useLayoutEffect} from "react";
 import { useOutletContext } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import {CHECK_TYPE} from "../Common/CheckboxGroup";
 import CheckboxGroup from "../Common/CheckboxGroup"
 import { PATH } from "../../IndexRouter";
+import {VocabularyContext} from './VocabularyContainer'
 import style from './css/EnglishStudy.module.css'
 
 export const TEST_OPTIONS = [
@@ -24,10 +25,19 @@ export const TEST_OPTIONS_VALUES = {
 
 const VocabularyMain = ()=>{
     const { message, setMessage } = useOutletContext();
+    const vocabularies = useContext(VocabularyContext);
 
     useEffect(()=>{
         message.checkedOption = [TEST_OPTIONS[0]]
         setMessage(message);
+    })
+
+    useLayoutEffect(()=>{
+        if(vocabularies.length > 0 && !TEST_OPTIONS_VALUES[`${vocabularies.length}题`])
+        {
+            TEST_OPTIONS.push(`${vocabularies.length}题`);
+            TEST_OPTIONS_VALUES[`${vocabularies.length}题`] = vocabularies.length;
+        }
     })
 
     return (
